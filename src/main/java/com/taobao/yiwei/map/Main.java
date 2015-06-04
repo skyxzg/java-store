@@ -1,16 +1,21 @@
 package com.taobao.yiwei.map;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Map.Entry;
 
 public class Main {
 
 	public static void main(String[] args){
 		Map<String, String> data = genernateMap();
+		data = sortMapByKey(data);
 		traverseKeySet(data);
+		traverseKeySetIter(data);
 		traverseEntrySet(data);
+		traverseEntrySetIter(data);
 	}
 	
 	public static Map<String, String> genernateMap () {
@@ -22,6 +27,18 @@ public class Main {
 		data.put("005", "vision");
 		return data;
 	}
+
+    public static Map<String, String> sortMapByKey(Map<String, String> oriMap) {  
+        if (oriMap == null || oriMap.isEmpty()) {  
+            return null;  
+        }  
+        Map<String, String> sortedMap = new TreeMap<String, String>(new Comparator<String>() {  
+            public int compare(String key1, String key2) {  
+                return key1.compareTo(key2);  
+            }});  
+        sortedMap.putAll(oriMap);  
+        return sortedMap;  
+    } 
 	
 	public static void traverseKeySet(Map<String, String> data) {
 		System.out.println("Traverse by key set...");
