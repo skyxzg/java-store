@@ -20,11 +20,13 @@ public class Main {
 	
 	public static Map<String, String> genernateMap () {
 		Map<String, String> data = new HashMap<String, String>();
-		data.put("001", "hello");
+		data.put("001", "Hello");
 		data.put("002", "world");
-		data.put("003", "i");
-		data.put("004", "am");
-		data.put("005", "vision");
+		data.put("003", "!");
+		data.put("004", "I");
+		data.put("005", "am");
+		data.put("006", "vision");
+		data.put("007", ".");
 		return data;
 	}
 
