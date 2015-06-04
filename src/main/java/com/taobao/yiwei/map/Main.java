@@ -1,6 +1,7 @@
 package com.taobao.yiwei.map;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -30,9 +31,30 @@ public class Main {
 		}
 	}
 	
+	public static void traverseKeySetIter(Map<String, String> data) {
+		System.out.println("Traverse by key set iter...");
+		Iterator<String> iter = data.keySet().iterator();
+		while (iter.hasNext()) {
+		    String key = iter.next();
+			System.out.println("key:" + key);
+			System.out.println("val:" + data.get(key));
+		}
+	}
+	
 	public static void traverseEntrySet(Map<String, String> data) {
 		System.out.println("Traverse by entry set...");
 		for (Entry<String, String> entry : data.entrySet()) {
+			System.out.println("key:" + entry.getKey());
+			System.out.println("val:" + entry.getValue());
+		}
+	}
+	
+	public static void traverseEntrySetIter(Map<String, String> data) {
+		System.out.println("Traverse by entry set iter...");
+		Iterator<Entry<String, String>> iter = data.entrySet().iterator();
+		Entry<String, String> entry;
+		while (iter.hasNext()) {
+		    entry = iter.next();
 			System.out.println("key:" + entry.getKey());
 			System.out.println("val:" + entry.getValue());
 		}
