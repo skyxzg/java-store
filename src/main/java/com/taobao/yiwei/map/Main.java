@@ -30,17 +30,17 @@ public class Main {
 		return data;
 	}
 
-    public static Map<String, String> sortMapByKey(Map<String, String> oriMap) {  
-        if (oriMap == null || oriMap.isEmpty()) {  
-            return null;  
-        }  
-        Map<String, String> sortedMap = new TreeMap<String, String>(new Comparator<String>() {  
-            public int compare(String key1, String key2) {  
-                return key1.compareTo(key2);  
-            }});  
-        sortedMap.putAll(oriMap);  
-        return sortedMap;  
-    } 
+  public static Map<String, String> sortMapByKey(Map<String, String> oriMap) {  
+      if (oriMap == null || oriMap.isEmpty()) {  
+          return null;  
+      }  
+      Map<String, String> sortedMap = new TreeMap<String, String>(new Comparator<String>() {  
+          public int compare(String key1, String key2) {  
+              return key1.compareTo(key2);  
+          }});  
+      sortedMap.putAll(oriMap);  
+      return sortedMap;  
+  } 
 	
 	public static void traverseKeySet(Map<String, String> data) {
 		System.out.println("Traverse by key set...");
