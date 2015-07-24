@@ -155,13 +155,9 @@ public class ExcelDrive extends Feeder {
 		if (method.getAnnotation(Ignore.class) != null) {
 			notifier.fireTestIgnored(description);
 		} else {
-			if (method instanceof CustomFrameworkMethod) {
-				CustomFrameworkMethod m = (CustomFrameworkMethod)method;
-				if (m.isRun()) {
-					runLeaf(methodBlock(method), description, notifier);
-				} else {
-					notifier.fireTestIgnored(description);
-				}
+			if ((method instanceof CustomMethod)
+					&& !((CustomMethod)method).isRun()) {
+				notifier.fireTestIgnored(description);
 			} else {
 				runLeaf(methodBlock(method), description, notifier);
 			}
@@ -221,7 +217,7 @@ public class ExcelDrive extends Feeder {
 				Object[] usedParams = new Object[parameterTypes.length];
 				System.arraycopy(generatedParams, 0, usedParams, 0, Math.min(generatedParams.length, usedParams.length));
 				String info = infoProvider.testInfo(method, usedParams);
-				result.add(new CustomFrameworkMethod(method, usedParams, threads, timeout, info));
+				result.add(new CustomMethod(method, usedParams, threads, timeout, info));
 				count++;
 			}
 			if (count == 0)

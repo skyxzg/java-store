@@ -4,9 +4,9 @@ import java.lang.reflect.Method;
 
 import org.databene.feed4junit.FrameworkMethodWithParameters;
 
-public class CustomFrameworkMethod extends FrameworkMethodWithParameters {
+public class CustomMethod extends FrameworkMethodWithParameters {
 	
-	public CustomFrameworkMethod(Method method, Object[] parameters,
+	public CustomMethod(Method method, Object[] parameters,
 			Integer threadPoolSize, long timeout, String info) {
 		super(method, parameters, threadPoolSize, timeout, info);
 	}
