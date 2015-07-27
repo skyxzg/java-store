@@ -1,8 +1,6 @@
 package com.taobao.yiwei.feed4junit;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +11,6 @@ import org.databene.benerator.anno.ThreadPoolSize;
 import org.databene.benerator.engine.BeneratorContext;
 import org.databene.benerator.engine.DefaultBeneratorContext;
 import org.databene.benerator.wrapper.ProductWrapper;
-import org.databene.commons.ConfigurationError;
 import org.databene.commons.Period;
 import org.databene.commons.converter.AnyConverter;
 import org.databene.feed4junit.ChildRunner;
@@ -21,21 +18,14 @@ import org.databene.feed4junit.ErrorReportingFrameworkMethod;
 import org.databene.feed4junit.Feed4JUnitConfig;
 import org.databene.feed4junit.Feeder;
 import org.databene.feed4junit.FrameworkMethodWithParameters;
-import org.databene.feed4junit.Scheduler;
 import org.databene.feed4junit.TestInfoProvider;
-import org.databene.feed4junit.scheduler.DefaultFeedScheduler;
 import org.databene.platform.java.Entity2JavaConverter;
-import org.databene.script.DatabeneScriptParser;
-import org.databene.script.Expression;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunNotifier;
-import org.junit.runners.model.FrameworkField;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
-import org.junit.runners.model.RunnerScheduler;
-import org.junit.runners.model.Statement;
 import org.junit.runners.model.TestClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +45,6 @@ public class ExcelDrive extends Feeder {
 	private AnnotationMapper annotationMapper;
 	
 	private List<FrameworkMethod> children;
-	private RunnerScheduler scheduler;
 
 	public ExcelDrive(Class<?> testClass) throws InitializationError {
 		super(testClass);
@@ -68,34 +57,6 @@ public class ExcelDrive extends Feeder {
 		} else {
 			return super.testName(method);
 		}
-	}
-	
-	@Override
-	public void setScheduler(RunnerScheduler scheduler) {
-		this.scheduler = scheduler;
-		super.setScheduler(scheduler);
-	}
-	
-	/**
-	 * Instantiates a test class and initializes attributes 
-	 * which have been marked with a @Source annotation.
-	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	protected Object createTest() throws Exception {
-		Object testObject = super.createTest();
-		for (FrameworkField attribute : getTestClass().getAnnotatedFields(org.databene.benerator.anno.Source.class)) {
-			if ((attribute.getField().getModifiers() & Modifier.PUBLIC) == 0)
-				throw new ConfigurationError("Attribute '" + attribute.getField().getName() + "' must be public");
-			Generator<?> generator = getAnnotationMapper().createAndInitAttributeGenerator(attribute.getField(), getContext());
-			if (generator != null) {
-				ProductWrapper wrapper = new ProductWrapper();
-				wrapper = generator.generate(wrapper);
-				if (wrapper != null)
-					attribute.getField().set(testObject, wrapper.unwrap());
-			}
-		}
-		return testObject;
 	}
 	
 	@Override
@@ -123,31 +84,6 @@ public class ExcelDrive extends Feeder {
 		return children;
 	}
 
-	@Override
-    protected void validateTestMethods(List<Throwable> errors) {
-		validatePublicVoidMethods(Test.class, false, errors);
-	}
-
-	// test execution --------------------------------------------------------------------------------------------------
-	
-	@Override
-	protected Statement childrenInvoker(final RunNotifier notifier) {
-		return new Statement() {
-			@Override
-			public void evaluate() {
-				runChildren(notifier);
-			}
-		};
-	}
-
-	private void runChildren(final RunNotifier notifier) {
-		RunnerScheduler scheduler = getScheduler();
-		for (FrameworkMethod method : getChildren()) {
- 			scheduler.schedule(new ChildRunner(this, method, notifier));
-		}
-		scheduler.finished();
-	}
-	
 	/** this is needed to make the runChild() method public and thus accessible from other classes, especially {@link ChildRunner}. */
 	@Override
 	public void runChild(FrameworkMethod method, RunNotifier notifier) {
@@ -162,34 +98,6 @@ public class ExcelDrive extends Feeder {
 				runLeaf(methodBlock(method), description, notifier);
 			}
 		}
-	}
-
-	public RunnerScheduler getScheduler() {
-		if (scheduler == null)
-			scheduler = createDefaultScheduler();
-		return scheduler;
-	}
-	
-	protected RunnerScheduler createDefaultScheduler() {
-		TestClass testClass = getTestClass();
-		Scheduler annotation = testClass.getJavaClass().getAnnotation(Scheduler.class);
-		if (annotation != null) {
-			String spec = annotation.value();
-			Expression<?> bean = DatabeneScriptParser.parseBeanSpec(spec);
-			return (RunnerScheduler) bean.evaluate(null);
-		} else {
-			return new DefaultFeedScheduler(1, DEFAULT_TIMEOUT);
-		}
-	}
-	
-	
-	
-	// helpers ---------------------------------------------------------------------------------------------------------
-
-	private void validatePublicVoidMethods(Class<? extends Annotation> annotation, boolean isStatic, List<Throwable> errors) {
-		List<FrameworkMethod> methods = getTestClass().getAnnotatedMethods(annotation);
-		for (FrameworkMethod eachTestMethod : methods)
-			eachTestMethod.validatePublicVoid(isStatic, errors);
 	}
 
 	private List<FrameworkMethodWithParameters> computeParameterizedTestMethods(Method method, BeneratorContext context) {
@@ -229,6 +137,8 @@ public class ExcelDrive extends Feeder {
 		}
 		return result;
 	}
+	
+	
 
 	private static Integer getThreadCount(Method method) {
 		ThreadPoolSize methodAnnotation = method.getAnnotation(ThreadPoolSize.class);

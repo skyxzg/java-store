@@ -8,5 +8,5 @@ import org.junit.runners.Suite;
 	TestCalculator.class,
 	TestCalculatorSquare.class
 })
-public class CalculatorAllTest{	
+public class CalculatorAllTest {	
 }

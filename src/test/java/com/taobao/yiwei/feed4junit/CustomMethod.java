@@ -14,8 +14,8 @@ public class CustomMethod extends FrameworkMethodWithParameters {
 	public boolean isRun() {
 		if ("yes".equals(parameters[2])
 				|| "YES".equals(parameters[2])
-				|| "TRUE".equals(parameters[2])
-				|| "true".equals(parameters[2])) {
+				|| "true".equals(parameters[2])
+				|| "TRUE".equals(parameters[2])) {
 			return true;
 		} else {
 			return false;
