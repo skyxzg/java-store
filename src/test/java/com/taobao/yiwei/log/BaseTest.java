@@ -1,14 +1,16 @@
-package com.taobao.yiwei.log4j;
+package com.taobao.yiwei.log;
 
 import static org.junit.Assert.assertTrue;
 
-import org.apache.log4j.Logger;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BaseTest {
-protected final static Logger log = Logger.getLogger(BaseTest.class);
+//	protected final static Logger log = Logger.getLogger(BaseTest.class);
+	protected final static Logger log = LoggerFactory.getLogger(BaseTest.class);
 	
 	// global parameter for distinguish case name
 	protected String caseIdentifier = "";

@@ -4,7 +4,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import com.mongodb.MongoClient;
-import com.taobao.yiwei.log4j.BaseTest;
+import com.taobao.yiwei.log.BaseTest;
 
 public class TestBase extends BaseTest {
 	public static MongoClient mongoClient;

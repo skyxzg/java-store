@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.databene.benerator.anno.Source;
 
-import com.taobao.yiwei.log4j.BaseTest;
+import com.taobao.yiwei.log.BaseTest;
 
 @RunWith(ExcelDrive.class)
 public class ParamTest extends BaseTest {
