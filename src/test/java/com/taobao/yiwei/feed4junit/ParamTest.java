@@ -12,7 +12,7 @@ import org.databene.benerator.anno.Source;
 
 import com.taobao.yiwei.log4j.BaseTest;
 
-@RunWith(ExcelDrive.class) 
+@RunWith(ExcelDrive.class)
 public class ParamTest extends BaseTest {
 
 	@BeforeClass

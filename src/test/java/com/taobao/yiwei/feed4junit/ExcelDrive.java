@@ -59,6 +59,13 @@ public class ExcelDrive extends Feeder {
 		}
 	}
 	
+	// fix junit-4.12 incompatibility
+    @Override
+    protected Description describeChild(FrameworkMethod method) {
+        return Description.createTestDescription(getTestClass().getJavaClass(),
+                testName(method), method.getAnnotations());
+    }
+	
 	@Override
 	protected List<FrameworkMethod> computeTestMethods() {
 		if (children == null) {
