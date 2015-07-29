@@ -32,7 +32,7 @@ public class ParamTest extends BaseTest {
 	}
 
 	@Test
-	@Source("src/test/resources/feed4junit_cases/testcases.xlsx")
+	@Source("src/test/resources/excel_cases/testcases.xlsx")
 	public void test_01(String caseName, String caseDesc, String isRun) {
 		System.out.println("caseName:" + caseName);
 		System.out.println("caseDesc:" + caseDesc);
@@ -41,7 +41,7 @@ public class ParamTest extends BaseTest {
 	}
 
 	@Test
-	@Source("src/test/resources/feed4junit_cases/testcases.xlsx")
+	@Source("src/test/resources/excel_cases/testcases.xlsx")
 	public void test_02(String caseName, String caseDesc, String isRun) {
 		System.out.println("caseName:" + caseName);
 		System.out.println("caseDesc:" + caseDesc);
