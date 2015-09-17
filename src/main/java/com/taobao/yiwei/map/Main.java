@@ -10,15 +10,21 @@ import java.util.Map.Entry;
 public class Main {
 
 	public static void main(String[] args){
-		Map<String, String> data = genernateMap();
-		data = sortMapByKey(data);
-		traverseKeySet(data);
-		traverseKeySetIter(data);
-		traverseEntrySet(data);
-		traverseEntrySetIter(data);
+		MapStore mapStore = new MapStore();
+		
+		Map<String, String> data = mapStore.genernateMap();
+		data = mapStore.sortMapByKey(data);
+		mapStore.traverseKeySet(data);
+		mapStore.traverseKeySetIter(data);
+		mapStore.traverseEntrySet(data);
+		mapStore.traverseEntrySetIter(data);
 	}
-	
-	public static Map<String, String> genernateMap () {
+}
+
+
+class MapStore {
+
+	public Map<String, String> genernateMap () {
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("001", "Hello");
 		data.put("002", "world");
@@ -30,7 +36,7 @@ public class Main {
 		return data;
 	}
 
-  public static Map<String, String> sortMapByKey(Map<String, String> oriMap) {  
+  public Map<String, String> sortMapByKey(Map<String, String> oriMap) {  
       if (oriMap == null || oriMap.isEmpty()) {  
           return null;  
       }  
@@ -42,7 +48,7 @@ public class Main {
       return sortedMap;  
   } 
 	
-	public static void traverseKeySet(Map<String, String> data) {
+	public void traverseKeySet(Map<String, String> data) {
 		System.out.println("Traverse by key set...");
 		for (String key : data.keySet()) {
 			System.out.println("key:" + key);
@@ -50,7 +56,7 @@ public class Main {
 		}
 	}
 	
-	public static void traverseKeySetIter(Map<String, String> data) {
+	public void traverseKeySetIter(Map<String, String> data) {
 		System.out.println("Traverse by key set iter...");
 		Iterator<String> iter = data.keySet().iterator();
 		while (iter.hasNext()) {
@@ -60,7 +66,7 @@ public class Main {
 		}
 	}
 	
-	public static void traverseEntrySet(Map<String, String> data) {
+	public void traverseEntrySet(Map<String, String> data) {
 		System.out.println("Traverse by entry set...");
 		for (Entry<String, String> entry : data.entrySet()) {
 			System.out.println("key:" + entry.getKey());
@@ -68,7 +74,7 @@ public class Main {
 		}
 	}
 	
-	public static void traverseEntrySetIter(Map<String, String> data) {
+	public void traverseEntrySetIter(Map<String, String> data) {
 		System.out.println("Traverse by entry set iter...");
 		Iterator<Entry<String, String>> iter = data.entrySet().iterator();
 		Entry<String, String> entry;
@@ -79,3 +85,4 @@ public class Main {
 		}
 	}
 }
+

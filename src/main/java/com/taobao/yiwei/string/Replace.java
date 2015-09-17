@@ -1,6 +1,6 @@
 package com.taobao.yiwei.string;
 
-public class Main {
+public class Replace {
 
 	public static void main(String[] args){
 		String testStr = "{binary,auth},{binary,noauth}";
