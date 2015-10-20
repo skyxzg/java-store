@@ -106,14 +106,16 @@ public class FileRunner extends BlockJUnit4ClassRunner {
 
 		if (method.getAnnotation(Ignore.class) != null) {
 			notifier.fireTestIgnored(description);
-		} else {
-			if ((method instanceof FrameworkMethodWithParameters)
-					&& !((FrameworkMethodWithParameters)method).isRun()) {
-				notifier.fireTestIgnored(description);
-			} else {
-				runLeaf(methodBlock(method), description, notifier);
-			}
+			return;
 		}
+		
+		if ((method instanceof FrameworkMethodWithParameters)
+				&& !((FrameworkMethodWithParameters)method).isRun()) {
+			notifier.fireTestIgnored(description);
+			return;
+		}
+		
+		runLeaf(methodBlock(method), description, notifier);
 	}
 
 }
