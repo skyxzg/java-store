@@ -11,8 +11,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.baotao.yiwei.filerunners.DataResource;
-import com.baotao.yiwei.filerunners.FileRunner;
+import com.taobao.yiwei.filerunners.DataResource;
+import com.taobao.yiwei.filerunners.FileRunner;
 import com.taobao.yiwei.log.BaseTest;
 
 
