@@ -29,8 +29,8 @@ public class TestCalculator {
     }
     
     @AfterClass //在类结束的时候调用的方法，必须public和static的，只调用一次
-    public static void destory(){
-        System.out.println("destory class");
+    public static void destroy(){
+        System.out.println("destroy class");
     }
     
     @Test
@@ -61,7 +61,7 @@ public class TestCalculator {
     }
     
     @Test(timeout = 1000)//设置时间限制，单位是毫秒，超时即算测试失败
-    public void testsquareRoot(){
+    public void testSquareRoot(){
         example.squareRoot(4);
         assertEquals(2, example.getResult());
     }
