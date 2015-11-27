@@ -42,3 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 /target
+
+# custom
+.classpath
+.project
+.settings/
+data.html
+diamond.log
