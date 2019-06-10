@@ -54,11 +54,12 @@ class ConsumeRefundTask2 implements Runnable {
 	}
 	
 	public void run() {
+		String tName = Thread.currentThread().getName();
 		if (isCheck) {
 			// 获取读锁
 			lock.readLock().lock();
 			
-			System.out.println("读：" + name + "正在查询" + account + "账户，当前余额为" + account.getBalance());
+			System.out.println(tName + " 读：" + name + "正在查询，账户为" + account + "，当前余额为" + account.getBalance());
 			
 			// 释放读锁
 			lock.readLock().unlock();
@@ -67,9 +68,9 @@ class ConsumeRefundTask2 implements Runnable {
 			lock.writeLock().lock();
 			
 			// 执行现金业务
-			System.out.println("写：" + name + "正在操作" + account + "账户，金额为" + monney + "，当前余额为" + account.getBalance());
+			System.out.println(tName + " 写：" + name + "正在操作，账户为" + account + "，金额为" + monney + "，当前余额为" + account.getBalance());
 			account.operate(monney);
-			System.out.println("写：" + name + "操作" + account + "账户成功，金额为" + monney + "，当前余额为" + account.getBalance());
+			System.out.println(tName + " 写：" + name + "操作成功，账户为" + account + "，金额为" + monney + "，当前余额为" + account.getBalance());
 			
 			// 释放写锁
 			lock.writeLock().unlock();

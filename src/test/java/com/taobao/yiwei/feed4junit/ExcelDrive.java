@@ -145,8 +145,6 @@ public class ExcelDrive extends Feeder {
 		return result;
 	}
 	
-	
-
 	private static Integer getThreadCount(Method method) {
 		ThreadPoolSize methodAnnotation = method.getAnnotation(ThreadPoolSize.class);
 		if (methodAnnotation != null)

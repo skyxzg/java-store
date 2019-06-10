@@ -68,11 +68,7 @@ public class FileRunner extends BlockJUnit4ClassRunner {
 		}
 
 		if (fileResource.file().endsWith(".csv")) {
-			// TODO: 实现csv的解析
-			throw new RuntimeException("csv文件解析未实现! file:" + fileResource.file());
-		} else if (fileResource.file().endsWith(".json")) {
-			// TODO: 实现json的解析
-			throw new RuntimeException("json文件解析未实现! file:" + fileResource.file());
+			paramTable = CsvParser.generateTable(fileResource.file());
 		} else if (fileResource.file().endsWith(".xls")) {
 			paramTable = XlsParser.generateTable(fileResource.file(), fileResource.sheet());
 		} else {

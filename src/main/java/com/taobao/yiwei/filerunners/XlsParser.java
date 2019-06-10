@@ -23,8 +23,9 @@ public class XlsParser {
 			}
 
 			int rowCount = sheet.getRows();
-			if (rowCount < 2)
+			if (rowCount < 2) {
 				throw new RuntimeException("Data incomplete! file:" + fileName + ", sheet:" + sheetName);
+			}
 			int columnCount = sheet.getColumns();
 
 			// decode first row
@@ -33,14 +34,14 @@ public class XlsParser {
 			for (int index = 0; index < columnCount; index++) {
 				topRow[index] = topCellArray[index].getContents();
 			}
-			table.setItems(topRow);
+			table.setColumnLabel(topRow);
 
 			// decode other rows
-			for (int row = 1; row < rowCount; row++) {
+			for (int rowIndex = 1; rowIndex < rowCount; rowIndex++) {
 				Map<String, String> map = new HashMap<String, String>();
-				Cell[] cellArray = sheet.getRow(row);
-				for (int column = 0; column < cellArray.length; column++) {
-					map.put(topRow[column], cellArray[column].getContents());
+				Cell[] cellArray = sheet.getRow(rowIndex);
+				for (int columnIndex = 0; columnIndex < cellArray.length; columnIndex++) {
+					map.put(topRow[columnIndex], cellArray[columnIndex].getContents());
 				}
 				table.addRow(map);
 			}

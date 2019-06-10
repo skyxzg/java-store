@@ -49,3 +49,5 @@ Temporary Items
 .settings/
 data.html
 diamond.log
+*.iml
+.idea/

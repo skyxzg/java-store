@@ -11,12 +11,12 @@ public class AtomicParam {
 	public static void main(String[] args) {
 		ExecutorService pool = Executors.newFixedThreadPool(3);
 		Lock lock = new ReentrantLock();
-		SaveTask t1 = new SaveTask("Frank", 1000, lock);
-		SaveTask t2 = new SaveTask("Lily", 800, lock);
-		SaveTask t3 = new SaveTask("Tom", 2100, lock);
-		SaveTask t4 = new SaveTask("Kevin", 1500, lock);
-		SaveTask t5 = new SaveTask("Lucy", 3000, lock);
-		SaveTask t6 = new SaveTask("Jack", 500, lock);
+		SaveTask t1 = new SaveTask("Frank", 1000, 2, lock);
+		SaveTask t2 = new SaveTask("Lily", 800, 3, lock);
+		SaveTask t3 = new SaveTask("Tom", 2100, 2, lock);
+		SaveTask t4 = new SaveTask("Kevin", 1500, 2, lock);
+		SaveTask t5 = new SaveTask("Lucy", 3000, 2, lock);
+		SaveTask t6 = new SaveTask("Jack", 500, 3, lock);
 		pool.execute(t1);
 		pool.execute(t2);
 		pool.execute(t3);
@@ -37,21 +37,26 @@ class SaveTask implements Runnable {
 //	private static int balance = 0;
 	private String name;
 	private int money;
+	private int times;
 	private Lock lock;
 	
-	public SaveTask(String name, int money, Lock lock) {
+	public SaveTask(String name, int money, int times, Lock lock) {
 		this.name = name;
 		this.money = money;
+		this.times = times;
 		this.lock = lock; 
 	}
 	
 	public void run() {
-		lock.lock();
-		balance.addAndGet(this.money);
-		System.out.println(name + "存入了" + money + "，当前余额为：" + balance.get());
-//		this.balance += this.money;
-//		System.out.println(name + "存入了" + money + "，当前余额为：" + this.balance);
-		lock.unlock();
+		String tName = Thread.currentThread().getName();
+		for (int i = 0; i < times; i++) {
+			lock.lock();
+			balance.addAndGet(this.money);
+			System.out.println(tName + " " + name + "第" + (i+1) + "存入了" + money + "，当前余额为：" + balance.get());
+//			this.balance += this.money;
+//			System.out.println(tName + " " + name + "第" + (i+1) + "存入了" + money + "，当前余额为：" + this.balance);
+			lock.unlock();
+		}
 	}
 }
 

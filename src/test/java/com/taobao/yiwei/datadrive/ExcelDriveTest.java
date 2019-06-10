@@ -50,4 +50,11 @@ public class ExcelDriveTest extends BaseTest {
 	public void test_02(Map<String, String> map) {
 		log.info("caseDesc is {}", map.get("caseDesc"));
 	}
+	
+
+	@Test
+	@DataResource(file="src/test/resources/excel_cases/testcases.csv")
+	public void test_03(Map<String, String> map) {
+		log.info("caseDesc is {}", map.get("caseDesc"));
+	}
 }

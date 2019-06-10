@@ -11,8 +11,8 @@ public class ThreadPool {
 		MyRun1 r1 = new MyRun1();
 		MyRun2 r2 = new MyRun2();
 		
-		// 将线程放入池中执行
-		for (int i = 0; i < 10; i++) {
+		// 将可执行代码放入线程池中执行
+		for (int i = 0; i < 3; i++) {
 			pool.execute(r1);
 		}
 		pool.execute(r2);
@@ -26,13 +26,29 @@ public class ThreadPool {
 class MyRun1 implements Runnable {
 	public void run() {
 		String tName = Thread.currentThread().getName();
-		System.out.println(tName + "执行Runnable1");
+		for (int i = 0; i < 10; i++) {
+			System.out.println(tName + " 第" + (i+1) + "次执行Runnable1");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
 
 class MyRun2 implements Runnable {
 	public void run() {
 		String tName = Thread.currentThread().getName();
-		System.out.println(tName + "执行Runnable2");
+		for (int i = 0; i < 10; i++) {
+			System.out.println(tName + " 第" + (i+1) + "次执行Runnable2");
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }

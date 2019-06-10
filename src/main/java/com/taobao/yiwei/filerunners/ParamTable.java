@@ -8,18 +8,18 @@ import java.util.Map;
 public class ParamTable {
 
 	private List<Map<String, String>> table = new ArrayList<Map<String, String>>();
-	private List<String> items = new ArrayList<String>();
+	private List<String> columnLabel = new ArrayList<String>();
 
 	public boolean isEmpty() {
 		return table.size() == 0;
 	}
 	
-	public void setItems(String[] str) {
-		items = Arrays.asList(str);
+	public void setColumnLabel(String[] str) {
+		columnLabel = Arrays.asList(str);
 	}
 
-	public List<String> getItems() {
-		return items;
+	public List<String> getColumnLabel() {
+		return columnLabel;
 	}
 
 	public int size() {

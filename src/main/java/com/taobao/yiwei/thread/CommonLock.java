@@ -10,7 +10,7 @@ public class CommonLock {
 
 	public static void main(String[] args) {
 		// 创建并发访问的账户
-		CreditCardAccount2 account = new CreditCardAccount2("95599200901215522", 10000);
+		CreditCardAccount account = new CreditCardAccount("95599200901215522", 10000);
 		
 		// 创建锁对象
 		Lock lock = new ReentrantLock();
@@ -40,11 +40,11 @@ public class CommonLock {
 
 class ConsumeRefundTask implements Runnable {
 	private String name;
-	private CreditCardAccount2 account;
+	private CreditCardAccount account;
 	private int monney;
 	private Lock lock;
 	
-	public ConsumeRefundTask(String name, CreditCardAccount2 account, int monney, Lock lock) {
+	public ConsumeRefundTask(String name, CreditCardAccount account, int monney, Lock lock) {
 		this.name = name;
 		this.account = account;
 		this.monney = monney;
@@ -56,9 +56,9 @@ class ConsumeRefundTask implements Runnable {
 		lock.lock();
 		
 		// 执行现金业务
-		System.out.println(name + "正在操作" + account + "账户，金额为" + monney + "，当前余额为" + account.getBalance());
+		System.out.println(name + "正在操作，账户为" + account + "，金额为" + monney + "，当前余额为" + account.getBalance());
 		account.operate(monney);
-		System.out.println(name + "操作" + account + "账户成功，金额为" + monney + "，当前余额为" + account.getBalance());
+		System.out.println(name + "操作成功，账户为" + account + "，金额为" + monney + "，当前余额为" + account.getBalance());
 		
 		// 释放锁
 		lock.unlock();
