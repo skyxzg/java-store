@@ -45,7 +45,7 @@ public class LineChart {
 		}
     	
     	String chartName = "my chart";
-    	String fileStr = "D:/test.png";
+    	String fileStr = "/Users/zhigang.xzg/test.png";
     	double baseLine = 1.1;
     	int width = 600;
     	int height = 450;
