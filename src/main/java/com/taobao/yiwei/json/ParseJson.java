@@ -1,10 +1,10 @@
 package com.taobao.yiwei.json;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 
 public class ParseJson {
@@ -28,13 +28,13 @@ public class ParseJson {
 		
 		System.out.println("jsonStr:" + jsonStr);
 		
-		JSONObject jsonObject = new JSONObject(jsonStr);
+		JSONObject jsonObject = JSONObject.parseObject(jsonStr);
 		String project = jsonObject.getString("project");
 		System.out.println("project:" + project);
 		String version = jsonObject.getString("version");
 		System.out.println("version:" + version);
 		JSONArray team = jsonObject.getJSONArray("team");
-		for (int i = 0; i < team.length(); i++) {
+		for (int i = 0; i < team.size(); i++) {
 			JSONObject ele = team.getJSONObject(i);
 			String name = ele.getString("name");
 			System.out.println("name:" + name);
