@@ -1,4 +1,4 @@
-package com.taobao.yiwei.thread;
+package com.taobao.yiwei.concurrent;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;

@@ -1,4 +1,4 @@
-package com.taobao.yiwei.thread;
+package com.taobao.yiwei.concurrent;
 
 public class Join {
 

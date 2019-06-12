@@ -1,4 +1,4 @@
-package com.taobao.yiwei.thread;
+package com.taobao.yiwei.concurrent;
 
 public class ImplementsRunnable {
 
@@ -6,7 +6,7 @@ public class ImplementsRunnable {
 		Thread t = new Thread(new MyThread(), "Demo Thread");
 		t.start();
 		for (int i = 0; i < 10; i++) {
-			System.out.println("Main thread:" + i);
+			System.out.println("Main concurrent:" + i);
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -20,7 +20,7 @@ class MyThread  implements Runnable {
 	
 	public void run() {
 		for (int i = 0; i < 10; i++) {
-			System.out.println("Child thread:" + i);
+			System.out.println("Child concurrent:" + i);
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
