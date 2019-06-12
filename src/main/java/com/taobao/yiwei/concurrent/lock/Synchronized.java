@@ -1,4 +1,4 @@
-package com.taobao.yiwei.concurrent;
+package com.taobao.yiwei.concurrent.lock;
 
 public class Synchronized {
 

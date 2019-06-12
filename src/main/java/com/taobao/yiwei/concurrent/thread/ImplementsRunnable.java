@@ -1,9 +1,9 @@
-package com.taobao.yiwei.concurrent;
+package com.taobao.yiwei.concurrent.thread;
 
-public class ExtendsThread {
+public class ImplementsRunnable {
 
-	public static void main(String[] args){
-		Thread t = new MyThread2("Demo Thread");
+	public static void main(String[] args) {
+		Thread t = new Thread(new MyThread(), "Demo Thread");
 		t.start();
 		for (int i = 0; i < 10; i++) {
 			System.out.println("Main concurrent:" + i);
@@ -16,11 +16,7 @@ public class ExtendsThread {
 	}
 }
 
-class MyThread2 extends Thread {
-	
-	public MyThread2(String name) {
-		super(name);
-	}
+class MyThread  implements Runnable {
 	
 	public void run() {
 		for (int i = 0; i < 10; i++) {

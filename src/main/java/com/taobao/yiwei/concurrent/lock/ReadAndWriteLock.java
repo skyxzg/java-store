@@ -1,4 +1,4 @@
-package com.taobao.yiwei.concurrent;
+package com.taobao.yiwei.concurrent.lock;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

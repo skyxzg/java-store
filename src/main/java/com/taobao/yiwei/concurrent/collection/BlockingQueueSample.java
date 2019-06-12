@@ -1,4 +1,4 @@
-package com.taobao.yiwei.concurrent;
+package com.taobao.yiwei.concurrent.collection;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
