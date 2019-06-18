@@ -3,7 +3,7 @@ package com.taobao.yiwei.java8;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MethodReferences {
+public class MethodReferencesSample {
 
     public static void main(String[] args) {
         List<String> names = new ArrayList<>();
