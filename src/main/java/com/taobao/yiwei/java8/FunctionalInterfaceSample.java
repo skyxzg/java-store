@@ -90,7 +90,7 @@ public class FunctionalInterfaceSample {
 
     /**
      * 内置函数式接口
-     * 1. Java8 之前已经有的函数式接口，如Runnable、Callable、Comparator等
+     * 1. Java8 之前已经有的函数式接口，如Runnable、Callable、Comparator、ActionListener等
      * 2. Java8 新增的内置函数式接口，在java.util.function包下，大致分了四类：
      *    - Function: 函数型接口，接收参数，并返回结果，主要方法 R apply(T t)
      *    - Consumer: 消费型接口，接收参数，无返回结果, 主要方法为 void accept(T t)
