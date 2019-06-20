@@ -107,6 +107,13 @@ public class StreamSample {
         System.out.println("======== Stream 处理方式 end ========");
     }
 
+    /**
+     * 1. 在大数据量输入的时候，parallel streams可以带来比较大的性能提升。但是应该记住，一些并行操作，
+     *    比如：reduce，collect需要额外的计算（组合操作），但是在顺序流中，这些组合操作是不需要的。
+     * 2. 另外，我们知道所有的parallel stream操作共享一个jvm范围内的ForkJoinPool，所以你应该注意避免在parallel stream上
+     *    执行慢阻塞流操作，因为这些操作可能导致你应用中依赖parallel streams操作的其他部分也会响应变慢。
+     * @param transactions
+     */
     private void parallelStreamProcess(List<Transaction> transactions) {
         System.out.println("======== ParallelStream 处理方式 begin ========");
 
@@ -124,8 +131,10 @@ public class StreamSample {
                     System.out.format("peek: %s [%s]\n", t.getId(), Thread.currentThread().getName());
                 })
                 .sorted((t1, t2) -> {
-                    // sorted不会并行，可以看到是由main线程来完成
-                    System.out.format("sorted: %s %s [%s]\n", t1.getId(), t2.getId(), Thread.currentThread().getName());
+                    // 从结果中可以看到sort是由main线程来完成
+                    // parallel stream中的sort操作使用了JAVA 8的一个新方法：Arrays.parallelSort()。
+                    // JAVA doc中是这样描述Arrays.parallelSort()的：待排序数组的长度决定了排序操作是顺序执行还是并行执行。
+                    System.out.format("sorted: %s <> %s [%s]\n", t1.getId(), t2.getId(), Thread.currentThread().getName());
                     return t2.getValue().compareTo(t1.getValue());
                 })
                 .map(t -> {
