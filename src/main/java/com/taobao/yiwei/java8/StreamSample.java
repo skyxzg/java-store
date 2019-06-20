@@ -3,6 +3,7 @@ package com.taobao.yiwei.java8;
 import lombok.Data;
 
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,6 +21,9 @@ public class StreamSample {
 
         // Stream 处理方式
         streamSample.streamProcess(dataList);
+
+        // ParallelStream 处理方式
+        streamSample.parallelStreamProcess(dataList);
     }
 
     private static List<Transaction> buildDataList(int num) {
@@ -47,7 +51,7 @@ public class StreamSample {
 
             @Override
             public Transaction get() {
-                return new Transaction(1000 + index++, TransactionType.get(index % 3), random.nextInt(100));
+                return new Transaction(1000 + index, TransactionType.get(index++ % 3), random.nextInt(100));
             }
         };
 
@@ -101,6 +105,39 @@ public class StreamSample {
         transactionIds.forEach(System.out::println);
 
         System.out.println("======== Stream 处理方式 end ========");
+    }
+
+    private void parallelStreamProcess(List<Transaction> transactions) {
+        System.out.println("======== ParallelStream 处理方式 begin ========");
+
+        // 查默认并行度
+        ForkJoinPool commonPool = ForkJoinPool.commonPool();
+        System.out.println("默认并行度：" + commonPool.getParallelism());    // 3
+
+        List<Integer> transactionIds = transactions.parallelStream()
+                .filter(t -> {
+                    System.out.format("filter: %s [%s]\n", t.getId(), Thread.currentThread().getName());
+                    return t.getType() == TransactionType.GROCERY;
+                })
+                .peek(t -> {
+                    // 增加一层peek，观察并行的特点
+                    System.out.format("peek: %s [%s]\n", t.getId(), Thread.currentThread().getName());
+                })
+                .sorted((t1, t2) -> {
+                    // sorted不会并行，可以看到是由main线程来完成
+                    System.out.format("sorted: %s %s [%s]\n", t1.getId(), t2.getId(), Thread.currentThread().getName());
+                    return t2.getValue().compareTo(t1.getValue());
+                })
+                .map(t -> {
+                    System.out.format("map: %s [%s]\n", t.getId(), Thread.currentThread().getName());
+                    return t.getId();
+                })
+                .collect(Collectors.toList());
+
+        transactionIds.forEach(System.out::println);
+
+        System.out.println("======== ParallelStream 处理方式 end ========");
+
     }
 }
 
