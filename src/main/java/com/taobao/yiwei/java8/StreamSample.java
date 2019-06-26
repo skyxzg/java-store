@@ -131,7 +131,8 @@ public class StreamSample {
                     System.out.format("peek: %s [%s]\n", t.getId(), Thread.currentThread().getName());
                 })
                 .sorted((t1, t2) -> {
-                    // 从结果中可以看到sort是由main线程来完成
+                    // sort是有状态操作：元素的处理受前面元素的影响，有状态的中间操作必须等到所有元素处理之后才知道最终结果: 需要当前元素，额外的状态
+                    // 从结果中可以看到sort是由main线程来完成。
                     // parallel stream中的sort操作使用了JAVA 8的一个新方法：Arrays.parallelSort()。
                     // JAVA doc中是这样描述Arrays.parallelSort()的：待排序数组的长度决定了排序操作是顺序执行还是并行执行。
                     System.out.format("sorted: %s <> %s [%s]\n", t1.getId(), t2.getId(), Thread.currentThread().getName());
