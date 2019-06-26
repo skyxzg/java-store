@@ -24,10 +24,10 @@ class NutritionFacts {
         private final int servings;
 
         // Optional arguments
-        private int calories;
-        private int fat;
-        private int sodium;
-        private int carbohydrate;
+        private int calories = 1;
+        private int fat = 1;
+        private int sodium = 1;
+        private int carbohydrate = 1;
 
         public Builder(int servingSize, int servings) {
             this.servingSize = servingSize;
