@@ -4,8 +4,6 @@ import lombok.Data;
 
 @Data
 public class CollegeStudent {
-    private Long id;
-    private String name;
-    private String tel;
-    private String mail;
+    private Integer score;
+    private String addr;
 }

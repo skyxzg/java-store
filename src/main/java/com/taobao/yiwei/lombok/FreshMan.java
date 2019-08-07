@@ -8,6 +8,8 @@ import lombok.ToString;
 @ToString(callSuper=true)
 @EqualsAndHashCode(callSuper=true)
 public class FreshMan extends CollegeStudent {
-    private Integer score;
-    private String addr;
+    private Long id;
+    private String name;
+    private String tel;
+    private String mail;
 }
