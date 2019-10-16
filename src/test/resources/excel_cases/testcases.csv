@@ -1,1 +1,6 @@
-caseName;caseDesc;isRun;OcsInstanceName;AuthenticIP;expAuthenticIPscase_01;Ôö¼Ó¿ÉĞÅIP;yes;hangzhou_for_authIP_1;0;0case_02;ÔÙ´ÎÔö¼ÓÍ¬Ò»IPÎª¿ÉĞÅIP;yes;hangzhou_for_authIP_1;0;case_03;¼ÌĞøÔö¼Ó¿ÉĞÅIP;no;hangzhou_for_authIP_1;1;0,1case_04;Ôö¼Ó¿ÉĞÅIPµ½ÁíÒ»¸öÊµÀı;yes;hangzhou_for_authIP_2;2;2case_05;ÒÑÔö¼Óµ½ÊµÀı1µÄ¿ÉĞÅIP£¬²»ÄÜÔÙÔö¼Óµ½ÊµÀı2;yes;hangzhou_for_authIP_2;1;2
+caseName;caseDesc;isRun;OcsInstanceName;AuthenticIP;expAuthenticIPs
+case_01;å¢åŠ å¯ä¿¡IP;yes;hangzhou_for_authIP_1;0;0
+case_02;å†æ¬¡å¢åŠ åŒä¸€IPä¸ºå¯ä¿¡IP;yes;hangzhou_for_authIP_1;0;
+case_03;ç»§ç»­å¢åŠ å¯ä¿¡IP;no;hangzhou_for_authIP_1;1;0,1
+case_04;å¢åŠ å¯ä¿¡IPåˆ°å¦ä¸€ä¸ªå®ä¾‹;yes;hangzhou_for_authIP_2;2;2
+case_05;å·²å¢åŠ åˆ°å®ä¾‹1çš„å¯ä¿¡IPï¼Œä¸èƒ½å†å¢åŠ åˆ°å®ä¾‹2;yes;hangzhou_for_authIP_2;1;2

@@ -5,8 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
-@ToString(callSuper=true)
-@EqualsAndHashCode(callSuper=true)
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class FreshMan extends CollegeStudent {
     private Long id;
     private String name;
