@@ -38,6 +38,8 @@ public class Sample {
             }
         }
 
+
+
         //mysqld.stop(); //optional, as there is a shutdown hook
     }
 }

@@ -11,25 +11,25 @@ import java.util.Random;
 public class LambdaBenchmark {
 
     public static void main(String[] args) {
-        Long num = 10000000L;
-        Long beginTime = System.currentTimeMillis();
+        long num = 10000000L;
+        long beginTime = System.currentTimeMillis();
         List<Integer> integers = prepareData(num);  // 一个大的 ArrayList，内部是随机的整形数据
-        Long costTime = System.currentTimeMillis() - beginTime;
+        long costTime = System.currentTimeMillis() - beginTime;
         System.out.println(String.format("prepare %d numbers, and cost time is %dms", num, costTime));
 
-        Long beginTime1 = System.currentTimeMillis();
+        long beginTime1 = System.currentTimeMillis();
         int maxVal1 = forEachLoopMaxInteger(integers);
-        Long costTime1 = System.currentTimeMillis() - beginTime1;
+        long costTime1 = System.currentTimeMillis() - beginTime1;
         System.out.println(String.format("maxVal is %d, and cost time is %dms", maxVal1, costTime1));
 
-        Long beginTime2 = System.currentTimeMillis();
+        long beginTime2 = System.currentTimeMillis();
         int maxVal2 = lambdaMaxInteger(integers);
-        Long costTime2 = System.currentTimeMillis() - beginTime2;
+        long costTime2 = System.currentTimeMillis() - beginTime2;
         System.out.println(String.format("maxVal is %d, and cost time is %dms", maxVal2, costTime2));
 
     }
 
-    private static List<Integer> prepareData(Long num) {
+    private static List<Integer> prepareData(long num) {
         List<Integer> integers = new ArrayList<>();
         Random rand = new Random();
         for (int i = 0; i < num; i++) {
@@ -49,6 +49,7 @@ public class LambdaBenchmark {
 
     // 基准测试 2
     private static int lambdaMaxInteger (List<Integer> integers) {
-        return integers.stream().reduce(Integer.MIN_VALUE, (a, b) -> Integer.max(a, b));
+        //return integers.stream().reduce(Integer.MIN_VALUE, (a, b) -> Integer.max(a, b));
+        return integers.stream().reduce(Integer.MIN_VALUE, Integer::max);
     }
 }
