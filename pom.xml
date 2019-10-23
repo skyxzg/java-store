@@ -78,8 +78,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
 		</dependency>
-        
-    </dependencies>
+		<dependency>
+			<groupId>com.wix</groupId>
+			<artifactId>wix-embedded-mysql</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+
+	</dependencies>
 
     <build>
 		<pluginManagement>
