@@ -1,5 +1,11 @@
 package com.taobao.yiwei.string;
 
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Map;
+import java.util.Set;
+
 public class Split {
 
 	public static void main(String[] args){
@@ -8,5 +14,8 @@ public class Split {
 		for (String city : citys) {
 			System.out.println("city:" + city);
 		}
+
+//		BitSet moby = ;
+
 	}
 }
