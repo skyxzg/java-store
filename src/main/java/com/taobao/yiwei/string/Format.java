@@ -4,6 +4,8 @@ import java.util.Locale;
 
 public class Format {
 
+	private static  String FORMAT_STRING = "hello %s, welcome!";
+
 	public static void main(String[] args) {
 		double e = Math.E;
 		System.out.format("%f%n", e);
@@ -13,6 +15,12 @@ public class Format {
 		System.out.println(str);
 		
 		System.out.printf(Locale.US, "%-10.4f", e);
+
+		formatTest("");
+	}
+
+	private static void formatTest(String custom) {
+		System.out.println(String.format(FORMAT_STRING, custom));
 	}
 
 }
