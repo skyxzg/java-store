@@ -9,4 +9,8 @@ public class CeilingLight {
     public void off() {
         System.out.println("CeilingLight off!");
     }
+
+    public void dim() {
+        System.out.println("CeilingLight dim!");
+    }
 }
