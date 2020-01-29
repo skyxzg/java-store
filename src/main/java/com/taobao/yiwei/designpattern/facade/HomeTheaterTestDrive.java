@@ -2,6 +2,12 @@ package com.taobao.yiwei.designpattern.facade;
 
 import com.taobao.yiwei.designpattern.facade.component.*;
 
+/**
+ * 外观/门面模式
+ * 提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。
+ *
+ * 最少知识原则：减少对象之间的交互
+ */
 public class HomeTheaterTestDrive {
     public static void main(String[] args) {
         // 实例化组件
