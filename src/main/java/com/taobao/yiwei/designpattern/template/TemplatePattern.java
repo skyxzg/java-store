@@ -1,11 +1,21 @@
 package com.taobao.yiwei.designpattern.template;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+
 /**
  * 模板方法模式
  * 在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。
  * 模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。
  *
  * 好莱坞原则：别调用（打电话给）我们，我们会调用（打电话给）你。
+ * 工厂方法、观察者，这些模式也采用了好莱坞原则。
+ *
+ * 应用场景举例：java集合类的排序方法。集合元素只要实现Comparable的compareTo方法即可。
+ *
+ * 策略模式和模板方法模式都封装算法，一个用组合，一个用继承。
+ * 工厂方法是模板方法的一种特殊版本。
  */
 public abstract class TemplatePattern {
 
