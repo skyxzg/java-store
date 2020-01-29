@@ -5,6 +5,10 @@ import com.taobao.yiwei.designpattern.command.appliances.Light;
 import com.taobao.yiwei.designpattern.command.appliances.Stereo;
 import com.taobao.yiwei.designpattern.command.command.*;
 
+/**
+ * 命令模式
+ * 将请求封装成对象，这可以让你使用不同的请求、队列，或者日志请求来参数化其他对象。命令模式也可以支持撤销操作。
+ */
 public class RemoteLoader {
     public static void main(String[] args) {
         RemoteControl remoteControl = new RemoteControl();
