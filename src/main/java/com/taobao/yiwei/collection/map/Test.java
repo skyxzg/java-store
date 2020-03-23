@@ -1,4 +1,4 @@
-package com.taobao.yiwei.map;
+package com.taobao.yiwei.collection.map;
 
 class Annoyance extends Exception {}
 class Sneeze extends Annoyance {}

@@ -1,4 +1,4 @@
-package com.taobao.yiwei.map;
+package com.taobao.yiwei.collection.map;
 
 public enum Color {
 	RED,

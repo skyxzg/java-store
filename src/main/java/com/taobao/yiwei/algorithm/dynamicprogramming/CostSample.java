@@ -1,4 +1,4 @@
-package com.taobao.yiwei.algorithm.dp;
+package com.taobao.yiwei.algorithm.dynamicprogramming;
 
 /**
  * 1. 假设一个奇葩国家的钞票面额分别是1元、5元和11元，应该如何用最少的钞票数目凑出15元

@@ -1,9 +1,5 @@
 package com.taobao.yiwei.designpattern.template;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-
 /**
  * 模板方法模式
  * 在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。
