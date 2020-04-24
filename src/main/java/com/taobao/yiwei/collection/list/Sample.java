@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 public class Sample {
     private List<TaskHook<String>> preTaskHooks = new ArrayList<>();
     private List<TaskHook<String>> postTaskHooks = new ArrayList<>();
