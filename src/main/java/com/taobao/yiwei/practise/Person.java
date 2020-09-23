@@ -2,7 +2,14 @@ package com.taobao.yiwei.practise;
 
 import java.lang.reflect.Method;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Person {
+
+	@Getter
+	@Setter
+	private String name;
 	
     public static void main(String[] args) {
     	try {
